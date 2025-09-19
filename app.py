@@ -155,13 +155,15 @@ def quote():
     """Get stock quote."""
     if request.method == "POST":
         symbol = request.form.get("symbol")
+        if not symbol:
+            return apology("Symbol is required")
+
         quote = lookup(symbol)
 
         if not quote:
             return apology("Invalid symbol", 400)
         else:
             return render_template("quote.html", quote=quote)
-
     else:
         return render_template("quote.html")
 

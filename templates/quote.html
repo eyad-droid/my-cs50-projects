@@ -7,12 +7,13 @@
 {% block main %}
     <form action="{{ url_for('quote') }}" method="post">
         <div class="mb-3">
-            <input type="text" name="symbol" autofocus placeholder="Symbol" class="form-control">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="Symbol" type="text">
         </div>
-        <button type="submit" class="btn btn-primary">Get Quote</button>
+        <button class="btn btn-primary" type="submit">Quote</button>
     </form>
     {% if quote %}
-        <h3>{{ quote['name'] }} ({{ quote['symbol'] }})</h3>
-        <p>Price: {{ quote['price'] }}</p>
+        <p class="mt-4">
+            A share of {{ quote.name }} ({{ quote.symbol }}) costs {{ quote.price | usd }}.
+        </p>
     {% endif %}
 {% endblock %}
