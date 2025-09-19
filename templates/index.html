@@ -5,36 +5,34 @@
 {% endblock %}
 
 {% block main %}
-    <table class="table table-striped">
+    <h2 class="text-center">Portfolio</h2>
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>Symbol</th>
-                <th>Name</th>
-                <th>Shares</th>
-                <th>Price</th>
-                <th>TOTAL</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total Value</th>
             </tr>
         </thead>
         <tbody>
             {% for stock in stocks %}
                 <tr>
-                    <td>{{ stock["symbol"] }}</td>
-                    <td>{{ stock["name"] }}</td>
-                    <td>{{ stock["total_shares"] }}</td>
-                    <td>{{ stock["price"] | usd }}</td>
-                    <td>{{ stock["total"] | usd }}</td>
+                    <td>{{ stock.symbol }}</td>
+                    <td>{{ stock.name }}</td>
+                    <td>{{ stock.total_shares }}</td>
+                    <td>{{ stock.price | usd }}</td>
+                    <td>{{ stock.value | usd }}</td>
                 </tr>
             {% endfor %}
+            <tr>
+                <td colspan="4" align="right">Cash:</td>
+                <td>{{ cash }}</td>
+            </tr>
+            <tr>
+                <td colspan="4" align="right">Total Value:</td>
+                <td>{{ total_value }}</td>
+            </tr>
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="4">Cash</td>
-                <td>{{ cash | usd }}</td>
-            </tr>
-            <tr>
-                <td colspan="4">Grand Total</td>
-                <td>{{ grand_total | usd }}</td>
-            </tr>
-        </tfoot>
     </table>
 {% endblock %}
