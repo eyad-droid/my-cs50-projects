@@ -5,12 +5,13 @@
 {% endblock %}
 
 {% block main %}
-    <form action="{{ url_for('buy') }}" method="post">
-        <div class="mb-3">
-            <input type="text" name="symbol" autofocus placeholder="Symbol" class="form-control">
+    <h1 class="mb-3">Buy Shares</h1>
+    <form action="/buy" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" id="symbol" name="symbol" placeholder="Symbol" type="text">
         </div>
-        <div class="mb-3">
-            <input type="text" name="shares" placeholder="Shares" class="form-control">
+        <div class="form-group">
+            <input class="form-control" id="shares" name="shares" placeholder="Number of Shares" type="number">
         </div>
         <button class="btn btn-primary" type="submit">Buy</button>
     </form>
