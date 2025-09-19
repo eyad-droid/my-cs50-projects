@@ -80,15 +80,18 @@ def buy():
         price = quote["price"]
         total_cost = int(shares) * price
 
+        # Fetch user's cash from the database
         cash = db.execute("SELECT cash FROM users WHERE id = :user_id", user_id=session["user_id"])[0]["cash"]
 
         if cash < total_cost:
             return apology("You don't have enough cash")
 
+        # Update user's cash after purchase
         db.execute("UPDATE users SET cash = cash - :total_cost WHERE id = :user_id",
                    total_cost=total_cost,
                    user_id=session["user_id"])
 
+        # Insert transaction into history
         db.execute("INSERT INTO transactions (user_id, symbol, shares, price) VALUES (?, ?, ?, ?)",
                    user_id=session["user_id"],
                    symbol=symbol,
@@ -100,7 +103,7 @@ def buy():
 
     else:
         return render_template("buy.html")
-    
+
 @app.route("/history")
 @login_required
 def history():
