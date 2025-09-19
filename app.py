@@ -29,8 +29,6 @@ def after_request(response):
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     return response
-
-
 @app.route("/")
 @login_required
 def index():
@@ -44,27 +42,61 @@ def index():
     # get user's cash balance
     cash = db.execute("SELECT cash FROM users WHERE id = :user_id", user_id=session["user_id"])[0]["cash"]
 
-   if cash < total_cost:
+    # total value
+    total_value = cash
+    grand_total = cash
+
+    # find total values
+    for stock in stocks:
+        quote = lookup(stock["symbol"])
+        if quote:
+            stock["name"] = quote["name"]
+            stock["price"] = quote["price"]
+            stock["value"] = quote["price"] * stock["total_shares"]
+            total_value += stock["value"]
+            grand_total += stock["value"]
+
+    return render_template("index.html", stocks=stocks, cash=usd(cash), total_value=usd(total_value), grand_total=grand_total)
+@app.route("/buy", methods=["GET", "POST"])
+@login_required
+def buy():
+    """Buy shares of stock"""
+    if request.method == "POST":
+        symbol = request.form.get("symbol").upper()
+        shares = request.form.get("shares")
+
+        if not symbol:
+            return apology("Symbol is required")
+        elif not shares or not shares.isdigit() or int(shares) <= 0:
+            return apology("Must be a positive number of shares")
+
+        quote = lookup(symbol)
+        if quote is None:
+            return apology("Symbol not found")
+
+        price = quote["price"]
+        total_cost = int(shares) * price
+
+        cash = db.execute("SELECT cash FROM users WHERE id = :user_id", user_id=session["user_id"])[0]["cash"]
+
+        if cash < total_cost:
             return apology("You don't have enough cash")
 
         db.execute("UPDATE users SET cash = cash - :total_cost WHERE id = :user_id",
-                   total_cost = total_cost,
-                   user_id = session["user_id"])
+                   total_cost=total_cost,
+                   user_id=session["user_id"])
 
-        # update history
-        db.execute("INSERT INTO transactions (user_id, symbol, shares, price) VALUES (:user_id, :symbol, :shares, :price)",
-                   user_id = session["user_id"],
-                   symbol = symbol,
-                   shares = shares,
-                   price  = price
-        )
+        db.execute("INSERT INTO transactions (user_id, symbol, shares, price) VALUES (?, ?, ?, ?)",
+                   user_id=session["user_id"],
+                   symbol=symbol,
+                   shares=shares,
+                   price=price)
 
-        flash(f"Bought {shares} shares of {symbol} costing {usd(total_cost)}!")
+        flash(f"Bought {shares} shares of {symbol} costing {usd(total_cost)}")
         return redirect("/")
+
     else:
         return render_template("buy.html")
-
-
 @app.route("/history")
 @login_required
 def history():
@@ -75,8 +107,6 @@ def history():
     )
 
     return render_template("history.html", transactions=transactions)
-
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
@@ -102,34 +132,26 @@ def login():
 
     else:
         return render_template("login.html")
-
-
 @app.route("/logout")
 def logout():
     """Log user out"""
     session.clear()
     return redirect("/")
-
-
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
 def quote():
     """Get stock quote."""
     if request.method == "POST":
         symbol = request.form.get("symbol")
-        if not symbol:
-            return apology("Symbol is required")
-
         quote = lookup(symbol)
 
         if not quote:
             return apology("Invalid symbol", 400)
         else:
             return render_template("quote.html", quote=quote)
+
     else:
         return render_template("quote.html")
-
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
@@ -158,8 +180,6 @@ def register():
 
     else:
         return render_template("register.html")
-
-
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
 def sell():
