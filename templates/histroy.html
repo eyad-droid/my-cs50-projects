@@ -5,28 +5,24 @@
 {% endblock %}
 
 {% block main %}
-    <h1>History</h1>
+    <h1 class="mb-3">Transaction History</h1>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Type</th>
                 <th>Symbol</th>
                 <th>Shares</th>
                 <th>Price</th>
-                <th>Total</th>
-                <th>Timestamp</th>
+                <th>Transacted</th>
             </tr>
         </thead>
         <tbody>
             {% for transaction in transactions %}
-                <tr>
-                    <td>{{ transaction.type }}</td>
-                    <td>{{ transaction.symbol }}</td>
-                    <td>{{ transaction.shares }}</td>
-                    <td>{{ transaction.price | usd }}</td>
-                    <td>{{ (transaction.price * transaction.shares) | usd }}</td>
-                    <td>{{ transaction.timestamp }}</td>
-                </tr>
+            <tr>
+                <td>{{ transaction.symbol }}</td>
+                <td>{{ transaction.shares }}</td>
+                <td>{{ transaction.price | usd }}</td>
+                <td>{{ transaction.timestamp }}</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
