@@ -8,7 +8,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required, lookup, usd
 
 # Configure application
-app = Flask(_name_)
+app = Flask(__name__)
 
 # Custom filter
 app.jinja_env.filters["usd"] = usd
@@ -81,7 +81,6 @@ def buy():
         price = quote["price"]
         total_cost = int(shares) * price
 
-        # 60
         cash = db.execute("SELECT cash FROM users WHERE id = :user_id", user_id=session["user_id"])[0]["cash"]
 
         if cash < total_cost:
@@ -91,7 +90,6 @@ def buy():
                    total_cost=total_cost,
                    user_id=session["user_id"])
 
-        # update history
         db.execute("INSERT INTO transactions (user_id, symbol, shares, price) VALUES (?, ?, ?, ?)",
                    user_id=session["user_id"],
                    symbol=symbol,
@@ -241,7 +239,6 @@ def sell():
                     flash(f"Sold {shares} shares of {symbol} for {usd(total_sale)}")
                     return redirect("/")
 
-        # If the loop finishes and no matching symbol is found
         return apology("Symbol not found")
 
     else:
