@@ -1,71 +1,71 @@
-#PROJECT TITLE: To-Do List web application
+# 📝 To-Do List Web Application
 
-##Video Demo:https://youtu.be/rmQoJ-c7g18
-
-###Description:
-
-This project is a simple *To-Do List web application* created as my *Final Project for CS50*.
-The purpose of the app is to allow users to add, mark as done/undo, and delete their daily tasks in an easy and intuitive way.
-It was built with *Flask* for the backend, and *HTML/CSS* for the frontend.
-No external database (like SQL) is used — the tasks are stored temporarily while the app is running.
+## 🎥 Video Demo  
+[Watch the demo on YouTube](https://youtu.be/rmQoJ-c7g18)
 
 ---
 
-## Features
-- *Add new tasks*: Users can enter any task they want to keep track of.
-- *Mark tasks as done / undo*: Tasks can be marked as completed, and undone if needed.
-- *Delete tasks*: Tasks can be permanently removed.
-- *Clean and simple interface*: Easy-to-use design with a minimal layout.
+## 📌 Project Overview
+This project is a *simple To-Do List web application* built as my *Final Project for CS50*.  
+The app allows users to *add, mark as done/undo, and delete tasks* in a clean and intuitive way.  
+
+It uses *Flask* for the backend, and *HTML/CSS* for the frontend.  
+👉 Note: No external database is used — tasks are stored temporarily while the app is running.
 
 ---
 
-## Why This Project?
-I chose to build a To-Do List app because it is:
-1. A very practical project that anyone can use.
-2. A good way to practice connecting backend logic (Flask) with frontend design (HTML & CSS).
-3. A project that shows I can manage user interactions, forms, and task management.
+## ✨ Features
+- ➕ *Add tasks*: Easily create new tasks.  
+- ✅ *Mark as done / undo*: Toggle tasks between completed and pending.  
+- ❌ *Delete tasks*: Permanently remove tasks.  
+- 🎨 *Minimal design*: Clean and user-friendly interface.  
 
 ---
 
-## Technologies Used
-- *Python (Flask)* – to handle routes, forms, and app logic.
-- *HTML* – to structure the content of the app.
-- *CSS* – to style the interface and make it look simple and clear.
+## 💡 Why This Project?
+I chose to build a To-Do List app because:
+- It’s practical and useful for everyday life.  
+- It demonstrates how to connect *backend logic (Flask)* with *frontend design (HTML & CSS)*.  
+- It showcases handling *user interactions, forms, and task management*.  
 
 ---
 
-## How It Works
-1. Open the web app in your browser.
-2. Add a task using the input form and press *Add*.
-3. The task will be displayed in the task list.
-4. You can:
-   - Click *Done* to mark it as completed.
-   - Click *Undo* to revert it back to pending.
-   - Click *Delete* to remove it.
-5. If there are no tasks, the app will show a friendly message inviting you to add one.
+## 🛠 Technologies Used
+- *Python (Flask)* → routes, forms, and app logic  
+- *HTML* → page structure  
+- *CSS* → styling and layout  
 
 ---
 
-## Challenges
-One challenge was to manage the tasks without using a real database like SQL.
-Instead, the tasks are stored temporarily in Python structures while the app is running.
-This makes the project simpler but still effective as a demonstration.
+## 🚀 How It Works
+1. Open the app in your browser.  
+2. Add a task using the input form and click *Add*.  
+3. Your task will appear in the list.  
+4. From there you can:  
+   - ✅ Click *Done* to mark it complete  
+   - ↩ Click *Undo* to revert it  
+   - ❌ Click *Delete* to remove it  
+
+If no tasks exist, a friendly message invites you to add one.  
 
 ---
 
-## Possible Improvements
-In the future, the project could be improved by:
-- Adding a *real database* (like SQLite or PostgreSQL) to store tasks permanently.
-- Allowing users to *log in* and manage their own tasks.
-- Adding categories, due dates, and priorities for tasks.
-- Improving the design with more advanced CSS or using a frontend framework.
+## ⚡ Challenges
+- Managing tasks *without a database* (tasks are stored in Python structures only while running).  
+- Balancing simplicity with functionality.  
 
 ---
 
-## Conclusion
-This project demonstrates my understanding of *Flask, Python, HTML, and CSS*.
-It is a functional and user-friendly web app that solves a common real-world problem: keeping track of tasks.
-
-I really enjoyed working on this project, and I see it as a solid foundation to build more advanced web applications in the future.
+## 🔮 Possible Improvements
+- Add a real database (SQLite, PostgreSQL) for persistent storage.  
+- Enable *user accounts* with personal task lists.  
+- Add categories, due dates, and priorities.  
+- Enhance the design with advanced CSS or a frontend framework.  
 
 ---
+
+## 🏁 Conclusion
+This project highlights my skills in *Flask, Python, HTML, and CSS*.  
+It’s a fully functional, simple, and user-friendly app that solves a common problem: *tracking daily tasks*.  
+
+I enjoyed building it, and I see it as a strong foundation for creating more advanced web applications in the future. 🚀
