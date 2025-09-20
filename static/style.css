@@ -1,0 +1,19 @@
+:root{--bg:#f7f7fb;--card:#ffffff;--muted:#777;--accent:#1e88e5;--danger:#e53935}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,Arial,Helvetica,sans-serif;background:var(--bg);margin:0;padding:24px;direction:rtl}
+.container{max-width:720px;margin:0 auto;background:var(--card);padding:22px;border-radius:12px;box-shadow:0 6px 18px rgba(20,20,50,0.06)}
+h1{margin:0 0 14px;font-size:22px}
+.add-form{display:flex;gap:10px;margin-bottom:18px}
+.add-form input{flex:1;padding:10px;border:1px solid #e6e6f0;border-radius:8px;font-size:15px}
+button{background:var(--accent);color:#fff;border:none;padding:10px 12px;border-radius:8px;cursor:pointer}
+button.small{padding:6px 8px;font-size:13px;border-radius:6px}
+button.danger{background:var(--danger)}
+.tasks{list-style:none;padding:0;margin:0}
+.task{display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid #f0f0f5}
+.task .left{display:flex;align-items:center;gap:10px}
+.title{font-size:15px}
+.time{color:var(--muted);margin-left:12px}
+.done .title{text-decoration:line-through;color:#999}
+.empty{padding:18px;text-align:center;color:var(--muted)}
+.footer{margin-top:18px;text-align:center;color:var(--muted)}
+.inline{display:inline}
