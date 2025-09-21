@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <h1>To-Do List</h1>
+
+    <form class="add-form" action="/add" method="post">
+      <input autocomplete="off" name="title" placeholder="Write your task here..." required>
+      <button type="submit">Add</button>
+    </form>
+
+    <ul class="tasks">
+      {% for t in tasks %}
+        <li class="task {% if t.done %}done{% endif %}">
+          <div class="left">
+            <form action="/toggle/{{ t.id }}" method="post" class="inline">
+              <button class="small" type="submit">{{ 'Undo' if t.done else 'Done' }}</button>
+            </form>
+            <span class="title">{{ t.title }}</span>
+          </div>
+          <div class="right">
+            <form action="/delete/{{ t.id }}" method="post" class="inline" onsubmit="return confirm('Are you sure you want to delete this task?');">
+              <button class="small danger" type="submit">Delete</button>
+            </form>
+          </div>
+        </li>
+      {% else %}
+        <li class="empty">No tasks yet — add a new one :)</li>
+      {% endfor %}
+    </ul>
+
+    <footer class="footer">
+      <small>Final Project CS50 — (Eyad)</small>
+    </footer>
+  </main>
+</body>
+</html>
