@@ -1,13 +1,17 @@
 # 📝 To-Do List Web Application
 
-> 🎓 *Certificate*  
-> This is the official graduation certificate for completing the CS50 course and its Final Project.  
-> [📜 Open Certificate](https://cs50.harvard.edu/certificates/df407c96-5f89-4e83-802d-661e9b3d05ed)
+---
 
-> 🎥 *Video Demo*  
-> This is a recorded video walkthrough explaining the project and how it works.  
-> [▶ Watch on YouTube](https://youtu.be/rmQoJ-c7g18?si=hTDBYZ9ZSyCIWqfohttps://youtu.be/rmQoJ-c7g18?si=hTDBYZ9ZSyCIWqfo)
+## 🎓 Certificate  
+This is the official graduation certificate for completing the CS50 course and its Final Project.  
+[📜 Open Certificate]
+(https://cs50.harvard.edu/certificates/df407c96-5f89-4e83-802d-661e9b3d05ed)
+---
 
+## 🎥 Video Demo  
+This is a recorded video walkthrough explaining the project and how it works.  
+[▶ Watch on YouTube]
+(https://youtu.be/rmQoJ-c7g18?si=hTDBYZ9ZSyCIWqfohttps://youtu.be/rmQoJ-c7g18?si=hTDBYZ9ZSyCIWqfo)
 ---
 
 📌 *Project Overview*  
