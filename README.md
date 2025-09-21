@@ -2,13 +2,13 @@
 
 ---
 
-## 🎓 Certificate  
+ 🎓 Certificate  
 This is the official graduation certificate for completing the CS50 course and its Final Project.  
 [📜 Open Certificate]
 (https://cs50.harvard.edu/certificates/df407c96-5f89-4e83-802d-661e9b3d05ed)
 ---
 
-## 🎥 Video Demo  
+ 🎥 Video Demo  
 This is a recorded video walkthrough explaining the project and how it works.  
 [▶ Watch on YouTube]
 (https://youtu.be/rmQoJ-c7g18?si=hTDBYZ9ZSyCIWqfohttps://youtu.be/rmQoJ-c7g18?si=hTDBYZ9ZSyCIWqfo)
@@ -78,3 +78,4 @@ This project highlights my skills in Flask, Python, HTML, and CSS.
 It’s a fully functional, simple, and user-friendly app that solves a common problem: tracking daily tasks.  
 
 I enjoyed building it, and I see it as a strong foundation for creating more advanced web applications in the future. 🚀
+
