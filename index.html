@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trivia!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // MULTIPLE CHOICE
+            const choices = document.querySelectorAll('.choice');
+            const feedback1 = document.getElementById('feedback1');
+
+            choices.forEach(button => {
+                button.addEventListener('click', function () {
+                    if (button.dataset.correct === "true") {
+                        button.style.backgroundColor = 'green';
+                        feedback1.textContent = '✅ Correct!';
+                    } else {
+                        button.style.backgroundColor = 'red';
+                        feedback1.textContent = '❌ Incorrect. Try again!';
+                    }
+
+                    // Disable all choices after one click
+                    choices.forEach(btn => btn.disabled = true);
+                });
+            });
+
+            // FREE RESPONSE
+            const checkButton = document.getElementById('check');
+            const feedback2 = document.getElementById('feedback2');
+
+            checkButton.addEventListener('click', function () {
+                const userAnswer = document.getElementById('response').value.trim().toLowerCase();
+                const correctAnswer = "cascading style sheets";
+
+                if (userAnswer === correctAnswer) {
+                    feedback2.textContent = "✅ Correct!";
+                    feedback2.style.color = "green";
+                } else {
+                    feedback2.textContent = "❌ Incorrect. Try again!";
+                    feedback2.style.color = "red";
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Trivia!</h1>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Part 1: Multiple Choice</h2>
+            <hr>
+            <p>Which language is used to structure the content of web pages?</p>
+            <button class="choice" data-correct="false">CSS</button>
+            <button class="choice" data-correct="false">Python</button>
+            <button class="choice" data-correct="true">HTML</button>
+            <button class="choice" data-correct="false">Java</button>
+            <p id="feedback1"></p>
+        </div>
+
+        <div class="section">
+            <h2>Part 2: Free Response</h2>
+            <hr>
+            <p>What does CSS stand for?</p>
+            <input type="text" id="response" placeholder="Type your answer here">
+            <button id="check">Check Answer</button>
+            <p id="feedback2"></p>
+        </div>
+    </div>
+</body>
+</html>
