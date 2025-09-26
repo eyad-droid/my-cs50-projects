@@ -1,30 +1,92 @@
-Speller
-📖 Description
-This project is part of the CS50 Problem Sets, implementing a dictionary’s functionality for a spell-checker program.
-It loads words from a dictionary into a hash table, checks words in a text for correctness, and reports misspelled words, along with performance statistics.
+📝 Speller
+
+📖 Overview
+
+Speller is a CS50 problem set project that implements a spell checker.
+It uses a hash table to store words from a dictionary and efficiently checks text files for misspellings.
+
+
+---
+
 ⚙ Features
-• Loads dictionary words into memory using a hash table.
-• Checks if a word exists in the dictionary (case-insensitive).
-• Reports the number of misspelled words.
-• Provides statistics about time spent in different operations: 
-• Loading dictionary
-• Checking words
-• Determining dictionary size
-• Unloading dictionary
-📂 File Structure
-• speller.c → Main program logic.
-• dictionary.c → Implements dictionary functions (load, check, unload, size).
-• dictionary.h → Header file with function prototypes.
-• Makefile → Compilation instructions.
-• dictionaries/ → Contains sample dictionary files.
-• texts/ → Contains sample texts to test the program.
-🚀 How to Run
-• Compile the program: make speller 
-• Run the spell checker with a text: ./speller texts/lalaland.txt Or specify a custom dictionary: ./speller dictionaries/large texts/lalaland.txt 
+
+✅ Load words from a dictionary into memory
+
+✅ Check if a word exists (case-insensitive)
+
+✅ Report number of misspelled words
+
+✅ Display performance statistics (load, check, size, unload)
+
+
+
+---
+
+📂 Project Structure
+
+├── speller.c        # Main program logic  
+├── dictionary.c     # Dictionary implementation (load, check, unload, size)  
+├── dictionary.h     # Function prototypes  
+├── Makefile         # Compilation instructions  
+├── dictionaries/    # Sample dictionaries  
+└── texts/           # Sample text files
+
+
+---
+
+🚀 Usage
+
+1. Compile the program
+
+
+
+make speller
+
+2. Run with default dictionary
+
+
+
+./speller texts/lalaland.txt
+
+3. Run with custom dictionary
+
+
+
+./speller dictionaries/large texts/lalaland.txt
+
+
+---
+
+📊 Sample Output
+
+MISSPELLED WORDS
+
+somthing  
+wrng  
+beleive  
+
+WORDS MISSPELLED:     3  
+WORDS IN DICTIONARY:  143091  
+WORDS IN TEXT:        218  
+TIME IN load:         0.05  
+TIME IN check:        0.02  
+TIME IN size:         0.00  
+TIME IN unload:       0.01  
+TIME IN TOTAL:        0.08
+
+
+---
+
 🛠 Requirements
-• C compiler (e.g., clang or gcc)
-• CS50 Library (provided in the course)
-📊 Example Output
-MISSPELLED WORDS somthing wrng beleive WORDS MISSPELLED: 3 WORDS IN DICTIONARY: 143091 WORDS IN TEXT: 218 TIME IN load: 0.05 TIME IN check: 0.02 TIME IN size: 0.00 TIME IN unload: 0.01 TIME IN TOTAL: 0.08 
+
+C compiler (clang or gcc)
+
+CS50 Library (provided by the course)
+
+
+
+---
+
 👨‍💻 Author
-• Eyad Tamer
+
+Eyad Tamer
