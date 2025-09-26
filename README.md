@@ -1,79 +1,182 @@
-# Finance Problem Set – CS50 Web Programming
+# 💸 Finance — CS50 Final Project
 
-## 📌 Course Overview
-This repository contains all the necessary materials and solutions for the *Finance Problem Set* from Harvard's *CS50 Web Programming Course*.  
-The project simulates a real-world stock trading platform and reinforces key concepts in web development, database management, and user authentication, while also aligning with core finance concepts like valuation and portfolio management.
+## 📖 Overview
+*Finance* is a Flask-based web application where users can simulate stock trading.  
+It allows registering, logging in, “buying” and “selling” stocks, checking current prices via an API, and tracking portfolio history.  
 
----
-
-## 📂 Course Structure & Project Files
-The repository is organized to cover both learning and practical implementation:
-
-- *problems/* – PDF or Markdown documents with the problem statements.
-- *solutions/* – Jupyter notebooks or Python scripts with detailed, commented solutions.
-- *data/* – Required data files (e.g., .csv, .xlsx) used in the solutions.
-- *project/* – Full CS50 Finance web application:
-  - app.py – Main Flask application.
-  - helpers.py – Helper functions (API requests, formatting, etc.).
-  - finance.db – SQLite database.
-  - templates/ – HTML templates for dynamic pages.
-  - static/ – CSS and JavaScript files.
-  - requirements.txt – Python dependencies.
+This project demonstrates *web development, **database design, **user authentication, and **API integration* in Python/Flask.
 
 ---
 
-## 🚀 Project Features
-- *User Authentication:* Secure registration, login, and logout; password hashing implemented.
-- *Stock Quotes:* Search for real-time stock prices using an external API.
-- *Buy & Sell Stocks:* Execute trades with balance validation; updates portfolio dynamically.
-- *Portfolio Management:* Displays all owned stocks, their quantity, current value, and total portfolio worth.
-- *Transaction History:* Complete record of all trades with timestamps.
-- *Cash Balance:* Users start with a virtual balance, updated automatically after transactions.
+## ✨ Features
+- 🔐 *User Authentication* (Register, Login, Logout, Password Hashing with Werkzeug)
+- 💹 *Quote Stocks*: search stock symbols in real time (API lookup)
+- 🛒 *Buy/Sell Stocks*: manage virtual portfolio with account balance
+- 📊 *Portfolio Overview*: current holdings, live prices, total value
+- 📜 *Transaction History*: log of all buys and sells
+- 💰 *Add Cash*: extra feature (if implemented) for depositing more balance
+- 🖥 *Responsive UI* with Bootstrap
 
 ---
 
-## 🛠 Technologies Used
-- *Backend:* Python, Flask
-- *Database:* SQLite
-- *Frontend:* HTML, CSS, Bootstrap, Jinja2 templates
-- *External API:* IEX API for stock prices
-- *Tools:* VS Code, GitHub for version control
+## 🗂 Project Structure
+
+├── app.py          # Main Flask application ├── helpers.py      # Helper functions (apology, login_required, lookup, usd) ├── templates/      # Jinja2 HTML templates │   ├── layout.html │   ├── index.html │   ├── quote.html │   ├── buy.html │   ├── sell.html │   ├── history.html │   ├── login.html │   ├── register.html │   ├── apology.html │   └── ... ├── static/         # (optional) CSS/JS assets ├── finance.db      # SQLite3 database ├── requirements.txt └── README.md       # This file
 
 ---
 
-## 📖 Topics Covered
-This problem set reinforces essential finance concepts, including:
+## 🗄 Database Schema (SQLite3)
+*Table: users*
+- id (INTEGER, PK, autoincrement)  
+- username (TEXT, UNIQUE, NOT NULL)  
+- hash (TEXT, NOT NULL)  
+- cash (REAL, DEFAULT 10000.00)  
 
-- *Time Value of Money (TVM):* Present value, future value, annuities, perpetuities.
-- *Capital Budgeting:* NPV, IRR, Payback Period.
-- *Risk and Return:* Portfolio theory, CAPM, risk-adjusted returns.
-- *Cost of Capital:* WACC, cost of equity, cost of debt.
-- *Valuation:* DCF analysis, relative valuation.
-- *Derivatives:* Introduction to options and futures.
-
----
-
-## 📖 How the Application Works
-1. Users *register* and *log in*.
-2. Each user has a *starting virtual balance*.
-3. Use the *Quote* feature to check stock prices.
-4. *Buy and sell stocks*, updating portfolio and balance dynamically.
-5. *Portfolio* page shows owned stocks, quantities, current prices, and total value.
-6. *History* page records all transactions with timestamps.
+*Table: transactions*
+- id (INTEGER, PK)  
+- user_id (INTEGER, FK → users.id)  
+- symbol (TEXT, NOT NULL)  
+- shares (INTEGER, NOT NULL, positive for buy, negative for sell)  
+- price (REAL, NOT NULL, price per share at transaction)  
+- timestamp (DATETIME, DEFAULT CURRENT_TIMESTAMP)  
 
 ---
 
-## 🎯 Learning Outcomes
-- Building a *full-stack web application* with Flask.
-- Managing *relational databases* using SQLite.
-- Integrating *external APIs* into web applications.
-- Implementing *user authentication* and session management.
-- Creating *dynamic and interactive web pages* using Jinja2 templates.
-- Applying best practices in *code organization, modularity, and documentation*.
+## 🔑 Core Routes
+| Route       | Method | Description |
+|-------------|--------|-------------|
+| /         | GET    | Portfolio overview (stocks owned, current price, value, cash, grand total) |
+| /quote    | GET/POST | Lookup a stock price via API |
+| /buy      | GET/POST | Buy shares (validate symbol, positive integer shares, sufficient cash) |
+| /sell     | GET/POST | Sell shares (validate ownership, shares ≤ owned) |
+| /history  | GET    | Transaction history |
+| /register | GET/POST | Create new user |
+| /login    | GET/POST | Log in existing user |
+| /logout   | GET    | End session |
 
 ---
 
-## 🙌 Acknowledgements
-- Harvard CS50 Web Programming Course for guidance and starter code.
-- The CS50 team for educational resources and support.
-- Inspired by real-world stock trading platforms and finance principles.
+## 🚀 How to Run
+1. *Install dependencies*
+```bash
+pip install -r requirements.txt
+
+2. Set environment variable
+
+
+
+export API_KEY=your_api_key_here
+
+(API key from IEX Cloud or CS50 Finance)
+
+3. Run the app
+
+
+
+flask run
+
+4. Open in browser:
+👉 http://127.0.0.1:5000/
+
+
+
+
+---
+
+🧪 Testing
+
+Register new user → check login + DB entry
+
+Quote stocks (e.g., AAPL, TSLA) → verify prices appear
+
+Buy shares → balance decreases, transaction logged
+
+Sell shares → balance increases, transaction logged
+
+History page shows correct logs (time + symbol + shares + price)
+
+Edge cases:
+
+Invalid symbols
+
+Negative shares / zero shares
+
+Insufficient balance
+
+Selling more than owned
+
+
+
+
+---
+
+⚠ Common Pitfalls
+
+Forgetting to round values with usd() (cents precision issues).
+
+Not checking for invalid input (blank symbol, non-integer shares).
+
+Cash not updating after buy/sell.
+
+Portfolio not aggregating shares correctly (must SUM grouped by symbol).
+
+API key not set → app crashes.
+
+
+
+---
+
+📦 Requirements
+
+Python 3.10+
+
+Flask
+
+Flask-Session
+
+Werkzeug
+
+requests
+
+SQLite3
+
+
+
+---
+
+📜 Example Screens
+
+Index: Shows holdings, balance, grand total.
+
+Quote: Lookup real-time stock price.
+
+Buy: Purchase shares, error if insufficient cash.
+
+Sell: Dropdown of owned stocks, choose shares to sell.
+
+History: All transactions with timestamps.
+
+
+
+---
+
+✅ Checklist before submission
+
+[ ] All routes implemented correctly
+
+[ ] Templates extend layout.html
+
+[ ] Cash updates correctly
+
+[ ] Error handling with apology() everywhere needed
+
+[ ] Passes check50 and submit50
+
+
+
+---
+
+👨‍💻 Author
+
+Eyad Tamer
+CS50 Finance Project
